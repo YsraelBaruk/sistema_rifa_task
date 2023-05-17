@@ -61,21 +61,7 @@
       }
     }
     $rifaDAO = new RifaDAO(true);
-    var_dump($rifaDAO->select("Eletrônico"));
-    ?>
-    <br>
-    <?php
-    require_once 'model/Usuario.php';
-    require_once 'model/UsuarioDAO.php';
-    $usuarioDAO = new RifaDAO(true);
-    $usuario = $usuarioDAO->insert($usuario);
-    if($usuario){
-      var_dump($usuario);
-    }
-    else{
-      var_dump($usuarioDAO->getErro());
-    }
-    var_dump($usuarioDAO->select("Eletrônico"));
+    var_dump($rifaDAO->select('Eletr'));
     ?>
 </body>
 </html>

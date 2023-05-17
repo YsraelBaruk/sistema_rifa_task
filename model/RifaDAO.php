@@ -70,11 +70,11 @@ class RifaDAO{
     }
 
     public function select($filtro=""):array|bool{
-        $cmdSql = 'SELECT * FROM Rifa WHERE rifa.titulo LIKE :titulo OR rifa.descricao LIKE :descricao';
+        $cmdSql = 'SELECT * FROM rifa WHERE rifa.titulo LIKE :titulo OR rifa.descricao LIKE :descricao';
         try{
             $cx = $this->pdo->prepare($cmdSql);
-            $cx->bindValue(':titulo',"%$filtro$%");
-            $cx->bindValue(':descricao',"%$filtro$%");
+            $cx->bindValue(':titulo',"%$filtro%");
+            $cx->bindValue(':descricao',"%$filtro%");
             $cx->execute();
             $cx->setFetchMode(PDO::FETCH_CLASS, 'Rifa');
             return $cx->fetchAll();

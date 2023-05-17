@@ -3,7 +3,7 @@ require_once './model/UsuarioDAO.php';
 require_once './model/Usuario.php';
 
 
-// $userDAO = new UsuarioDAO();
+$userDAO = new UsuarioDAO();
 
 // $consulta = $userDAO->select('');
 
@@ -20,3 +20,4 @@ require_once './model/Usuario.php';
 // echo json_encode($result);
 
 var_dump(new Usuario(true));
+var_dump($userDAO->select('Lucas'));
