@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste</title>
+    <style>
+      input[type="datetime-local"]:disabled {
+        /*background-color: dimgrey;*/
+        display: block;
+        /*color: linen;*/
+        /*opacity: 1;*/
+      }
+    </style>
 </head>
 <body>
 <form method="post">
@@ -40,14 +48,12 @@
         $valor = $_POST['valor'];
         $data_termino = $_POST['data_termino'];
         $tempo_reserva = $_POST['tempo_reserva'];
-    
+
       // cria um novo objeto Usuario com os dados do formulário
       //$usuario = new Usuario(0, $email, $senha, $nome, $foto, $tel, $endereco, $cpf, "", "");
-      $rifa = new Rifa(true, 0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 131, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-      
-      // var_dump($usuario);
-      
 
+      $rifa = new Rifa(true, 0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 131, 'CURRENT_TIMESTAMP', 'CURRENT_TIMESTAMP');
+      // var_dump($usuario);
       // cria um novo objeto UsuarioDAO e insere o novo usuário no banco de dados
       //  $usuarioDAO = new UsuarioDAO();
       // $usuario = $usuarioDAO->insert($usuario);
@@ -61,7 +67,7 @@
       }
     }
     $rifaDAO = new RifaDAO(true);
-    var_dump($rifaDAO->select('Eletr'));
+    var_dump($rifaDAO->insert());
     ?>
 </body>
 </html>

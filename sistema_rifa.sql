@@ -191,6 +191,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `email`, `senha`, `nome`, `foto`, `tel`, `endereco`, `cpf`, `creation_time`, `modification_time`) VALUES
+(128, 'lucasmendes@gmail.com', 'senha123', 'Lucas Mendes', 'foto1.jpg', '11987654321', 'Rua A, 123', 12345678901, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (129, 'lucasmendes@gmail.com', 'senha123', 'Lucas Mendes', 'foto1.jpg', '11987654321', 'Rua A, 123', 12345678901, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (130, 'carlasouza@hotmail.com', 'senha456', 'Carla Souza', 'foto2.jpg', '11976543210', 'Rua B, 456', 23456789012, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (131, 'gabrielalves@yahoo.com', 'senha789', 'Gabriela Alves', 'foto3.jpg', '11965432109', 'Rua C, 789', 34567890123, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
@@ -209,6 +210,9 @@ INSERT INTO `usuario` (`id`, `email`, `senha`, `nome`, `foto`, `tel`, `endereco`
 (144, 'viniciusoliveira@gmail.com', 'senha123', 'Vinicius Oliveira', 'foto16.jpg', '11732109876', 'Rua P, 3435', 789012345, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (163, 'camargoliveira@gmail.com', '3256723456345', 'ELITON-PC', 'gsdqqqqqqqqqgdf.png', '14996874866', 'Rua Joaquim Antunes de Souza', 45235835875, '2023-05-02 14:03:22', '2023-05-02 14:03:22');
 
+INSERT INTO `rifa` (`titulo`, `descricao`, `quant_num`, `valor`, `data_termino`, `tempo_reserva`, `fk_Usuario_id`, `creation_time`, `modification_time`) VALUES
+('Rifa da viagem', 'Para viajarmos para a praia', 100, 25, '2023-08-11', 10, 129, '2023-07-29', '2023-07-29' ),
+('Rifa beneficiente', 'Para casa de órfãos', 150, 30, '2023-07-15', 5, 131, '2023-07-29', '2023-07-29');
 --
 -- Restrições para despejos de tabelas
 --
