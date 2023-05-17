@@ -90,7 +90,7 @@ class Rifa {
     public function setFk_Usuario_id($fk_Usuario_id){
         $this-> fk_Usuario_id = $fk_Usuario_id;
     }
-
+    
     public function getCreation_time(){
         return $this->creation_time;
     }

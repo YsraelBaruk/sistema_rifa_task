@@ -31,7 +31,6 @@
     <?php
     require_once 'model/RifaDAO.php';
     require_once 'model/Rifa.php';
-    
     // verifica se os dados foram enviados pelo formulário
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // obtém os dados do formulário
@@ -43,28 +42,40 @@
         $tempo_reserva = $_POST['tempo_reserva'];
     
       // cria um novo objeto Usuario com os dados do formulário
-      // $usuario = new Usuario(0, $email, $senha, $nome, $foto, $tel, $endereco, $cpf, "", "");
-      $rifa = new Rifa(0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 0, "", "");
+      //$usuario = new Usuario(0, $email, $senha, $nome, $foto, $tel, $endereco, $cpf, "", "");
+      $rifa = new Rifa(true, 0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 131, 0, "CURRENT-TIME");
       
       // var_dump($usuario);
       
 
       // cria um novo objeto UsuarioDAO e insere o novo usuário no banco de dados
-      // $usuarioDAO = new UsuarioDAO();
+      //  $usuarioDAO = new UsuarioDAO();
       // $usuario = $usuarioDAO->insert($usuario);
-      $rifaDAO = new RifaDAO();
+      $rifaDAO = new RifaDAO(true);
       $rifa = $rifaDAO->insert($rifa);
       if($rifa){
         var_dump($rifa);
       }
       else{
         var_dump($rifaDAO->getErro());
-      }         
-      
+      }
     }
-
-    // $usuarioDAO = new UsuarioDAO();
-    // var_dump($usuarioDAO->selectByNome());
+    $rifaDAO = new RifaDAO(true);
+    var_dump($rifaDAO->select("Eletrônico"));
+    ?>
+    <br>
+    <?php
+    require_once 'model/Usuario.php';
+    require_once 'model/UsuarioDAO.php';
+    $usuarioDAO = new RifaDAO(true);
+    $usuario = $usuarioDAO->insert($usuario);
+    if($usuario){
+      var_dump($usuario);
+    }
+    else{
+      var_dump($usuarioDAO->getErro());
+    }
+    var_dump($usuarioDAO->select("Eletrônico"));
     ?>
 </body>
 </html>

@@ -44,16 +44,43 @@ class RifaDAO{
     }
 
     public function selectById($id): Rifa|bool{
-        $stmt = $this->pdo>prepare("SELECT * FROM rifa WHERE rifa.id = :id");
+        $stmt = $this->pdo->prepare("SELECT * FROM Rifa WHERE Rifa.id = :id");
         try {
             if($stmt->execute(['id'=>$id])){
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                return (new Rifa($row['id'], $row['titulo'], $row['descricao'], $row['quant_num'], $row['valor'], $row['data_termino'], $row['tempo_reserva'], $row['fk_Usuario_id'], $row['creation_time'], $row['modification_time']));
+                return (new Rifa(true, $row['id'], $row['titulo'], $row['descricao'], $row['quant_num'], $row['valor'], $row['data_termino'], $row['tempo_reserva'], $row['fk_Usuario_id'], $row['creation_time'], $row['modification_time']));
             }
             return false;
         }
         catch (\PDOException $e) {
             $this->erro = 'Erro ao selecionar a rifa: ' . $e->getMessage();
+            return false;
+        }
+    }
+    
+    public function listarTodos(){
+        $cmdSql = "SELECT * FROM Rifa";
+        $cx = $this->pdo->prepare($cmdSql);
+        $cx->execute();
+        if($cx->rowCount() > 0){
+            $cx->setFetchMode(PDO::FETCH_CLASS, 'Rifa');
+            return $cx->fetchAll();
+        }
+        return false;
+    }
+
+    public function select($filtro=""):array|bool{
+        $cmdSql = 'SELECT * FROM Rifa WHERE rifa.titulo LIKE :titulo OR rifa.descricao LIKE :descricao';
+        try{
+            $cx = $this->pdo->prepare($cmdSql);
+            $cx->bindValue(':titulo',"%$filtro$%");
+            $cx->bindValue(':descricao',"%$filtro$%");
+            $cx->execute();
+            $cx->setFetchMode(PDO::FETCH_CLASS, 'Rifa');
+            return $cx->fetchAll();
+        }
+        catch(\PODException $e){
+            $this->erro = 'Erro ao selecionar o usuário ' . $e->getMessage();
             return false;
         }
     }
