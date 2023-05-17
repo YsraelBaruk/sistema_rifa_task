@@ -85,4 +85,14 @@ class RifaDAO{
         }
     }
 
+    public function selectByNome($nome=""){
+        $stmt = $this->pdo->prepare("SELECT * FROM rifa WHERE rifa.titulo LIKE :titulo");
+        $titulo = '%'.$titulo.'%';
+        try{
+            $stmt->execute(['nome'=>$nome]);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'Rifa');
+        }catch(PDOException $e) {
+            throw new Exception('Erro ao selecionar a rifa por nome: ' . $e->getMessage());
+        }
+    }
 }

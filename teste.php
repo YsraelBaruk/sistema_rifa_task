@@ -43,7 +43,7 @@
     
       // cria um novo objeto Usuario com os dados do formulário
       //$usuario = new Usuario(0, $email, $senha, $nome, $foto, $tel, $endereco, $cpf, "", "");
-      $rifa = new Rifa(true, 0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 131, 0, "CURRENT-TIME");
+      $rifa = new Rifa(true, 0, $titulo, $descricao, $quant_num, $valor, $data_termino, $tempo_reserva, 131, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
       
       // var_dump($usuario);
       
