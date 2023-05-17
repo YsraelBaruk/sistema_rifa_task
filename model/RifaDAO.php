@@ -20,9 +20,7 @@ class RifaDAO{
     }
 
     public function insert(Rifa $rifa): Rifa|bool{
-        $stmt = $this->pdo->prepare("INSERT INTO rifa(titulo, descricao, quant_num, valor, data_termino, tempo_reserva, fk_Usuario_id, creation_time, modification_time) 
-        VALUES 
-        (:titulo, :descricao, :quant_num, :valor, :data_termino, :tempo_reserva, :fk_Usuario_id, :creation_time, :modification_time)");
+        $stmt = $this->pdo->prepare("INSERT INTO rifa(titulo, descricao, quant_num, valor, data_termino, tempo_reserva, fk_Usuario_id) VALUES (:titulo, :descricao, :quant_num, :valor, :data_termino, :tempo_reserva, :fk_Usuario_id)");
         $dados = [
             'titulo'            => $rifa->getTitulo(),
             'descricao'         => $rifa->getDescricao(),
@@ -30,9 +28,7 @@ class RifaDAO{
             'valor'             => $rifa->getValor(),
             'data_termino'      => $rifa->getData_termino(),
             'tempo_reserva'     => $rifa->getTempo_reserva(),
-            'fk_Usuario_id'     => $rifa->getFk_Usuario_id(),
-            'creation_time'     => $rifa->getCreation_time(),
-            'modification_time' => $rifa->getModification_time()
+            'fk_Usuario_id'     => $rifa->getFk_Usuario_id()
         ];
         try{
             $stmt->execute($dados);
@@ -95,6 +91,18 @@ class RifaDAO{
             throw new Exception('Erro ao selecionar a rifa pelo nome: ' . $e->getMessage());
         }
     }
+//update
+    public function deleteById($id){
+        $stmt = $this->pdo->prepare("DELETE FROM Rifa WHERE rifa.id = ?");
+        try{
+            $stmt->execute([$id]);
+            return $stmt->rowCount();
+        } catch(PDOException $e) {
+            throw new Exception('Erro ao excluir a rifa: ' . $e->getMessage());
+        }
+    }
 
-    
+    public function __destruct(){
+        $this->pdo = null;
+    }
 }

@@ -9,4 +9,4 @@ if($rifaDAO){
 else{
   var_dump($rifaDAO->getErro());
 }
-var_dump($rifaDAO->selectByNome('viagem'));
+var_dump($rifaDAO->deleteById(1));
