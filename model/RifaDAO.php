@@ -20,16 +20,18 @@ class RifaDAO{
     }
 
     public function insert(Rifa $rifa): Rifa|bool{
-        $stmt = $this->pdo->prepare("INSERT INTO rifa(titulo, descricao, quant_num, valor, data_termino, tempo_reserva, fk_Usuario_id, creation_time, modification_time) VALUES (:titulo, :descricao, :quant_num, :valor, :data_termino, :tempo_reserva, :fk_Usuario_id, :creation_time, :modification_time)");
+        $stmt = $this->pdo->prepare("INSERT INTO rifa(titulo, descricao, quant_num, valor, data_termino, tempo_reserva, fk_Usuario_id, creation_time, modification_time) 
+        VALUES 
+        (:titulo, :descricao, :quant_num, :valor, :data_termino, :tempo_reserva, :fk_Usuario_id, :creation_time, :modification_time)");
         $dados = [
-            'titulo' => $rifa->getTitulo(),
-            'descricao' => $rifa->getDescricao(),
-            'quant_num' => $rifa->getQuant_num(),
-            'valor' => $rifa->getValor(),
-            'data_termino' => $rifa->getData_termino(),
-            'tempo_reserva' => $rifa->getTempo_reserva(),
-            'fk_Usuario_id' => $rifa->getFk_Usuario_id(),
-            'creation_time' => $rifa->getCreation_time(),
+            'titulo'            => $rifa->getTitulo(),
+            'descricao'         => $rifa->getDescricao(),
+            'quant_num'         => $rifa->getQuant_num(),
+            'valor'             => $rifa->getValor(),
+            'data_termino'      => $rifa->getData_termino(),
+            'tempo_reserva'     => $rifa->getTempo_reserva(),
+            'fk_Usuario_id'     => $rifa->getFk_Usuario_id(),
+            'creation_time'     => $rifa->getCreation_time(),
             'modification_time' => $rifa->getModification_time()
         ];
         try{
@@ -41,6 +43,19 @@ class RifaDAO{
         }
     }
 
-    
+    public function selectById($id): Rifa|bool{
+        $stmt = $this->pdo>prepare("SELECT * FROM rifa WHERE rifa.id = :id");
+        try {
+            if($stmt->execute(['id'=>$id])){
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                return (new Rifa($row['id'], $row['titulo'], $row['descricao'], $row['quant_num'], $row['valor'], $row['data_termino'], $row['tempo_reserva'], $row['fk_Usuario_id'], $row['creation_time'], $row['modification_time']));
+            }
+            return false;
+        }
+        catch (\PDOException $e) {
+            $this->erro = 'Erro ao selecionar a rifa: ' . $e->getMessage();
+            return false;
+        }
+    }
 
 }
