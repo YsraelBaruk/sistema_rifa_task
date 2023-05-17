@@ -6,8 +6,7 @@ require_once './model/Rifa.php';
 
 
 $userDAO = new UsuarioDAO();
-$rifaDAO = new RifaDAO();
-
+$rifaDAO = new RifaDAO(true);
 // $consulta = $userDAO->select('');
 // $result['result'] = false;
 // $result['quant'] = 0;
@@ -18,6 +17,11 @@ $rifaDAO = new RifaDAO();
 //     $result['dados'] = $consulta;
 // }
 // echo json_encode($result);
-
-var_dump(new Rifa(true));
-var_dump($rifaDAO->select('rifa'));
+//var_dump(new Rifa(true));
+if($rifaDAO){
+    var_dump($rifaDAO);
+  }
+  else{
+    var_dump($rifaDAO->getErro());
+}
+var_dump($rifaDAO->selectById(129));
