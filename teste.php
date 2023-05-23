@@ -66,8 +66,6 @@
         var_dump($rifaDAO->getErro());
       }
     }
-    $rifaDAO = new RifaDAO(true);
-    var_dump($rifaDAO->insert());
     ?>
 </body>
 </html>

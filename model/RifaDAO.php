@@ -81,7 +81,7 @@ class RifaDAO{
         }
     }
 
-    public function selectByNome($titulo=""){
+    public function selectByTitulo($titulo=""){
         $stmt = $this->pdo->prepare("SELECT * FROM rifa WHERE rifa.titulo LIKE :titulo");
         $titulo = '%' . $titulo . '%';
         try{
