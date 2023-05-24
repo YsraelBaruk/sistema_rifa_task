@@ -191,7 +191,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `email`, `senha`, `nome`, `foto`, `tel`, `endereco`, `cpf`, `creation_time`, `modification_time`) VALUES
-(128, 'lucasmendes@gmail.com', 'senha123', 'Lucas Mendes', 'foto1.jpg', '11987654321', 'Rua A, 123', 12345678901, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (129, 'lucasmendes@gmail.com', 'senha123', 'Lucas Mendes', 'foto1.jpg', '11987654321', 'Rua A, 123', 12345678901, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (130, 'carlasouza@hotmail.com', 'senha456', 'Carla Souza', 'foto2.jpg', '11976543210', 'Rua B, 456', 23456789012, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),
 (131, 'gabrielalves@yahoo.com', 'senha789', 'Gabriela Alves', 'foto3.jpg', '11965432109', 'Rua C, 789', 34567890123, '2023-04-18 12:04:16', '2023-04-18 12:04:16'),

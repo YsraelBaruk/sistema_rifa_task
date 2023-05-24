@@ -37,8 +37,8 @@
   <input type="submit" value="Cadastrar">
 </form>
     <?php
-    require_once 'model/RifaDAO.php';
-    require_once 'model/Rifa.php';
+    require_once './model/RifaDAO.php';
+    require_once './model/Rifa.php';
     // verifica se os dados foram enviados pelo formulário
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // obtém os dados do formulário

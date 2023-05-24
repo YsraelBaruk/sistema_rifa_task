@@ -34,7 +34,7 @@ class RifaDAO{
             $stmt->execute($dados);
             return $this->selectById($this->pdo->lastInsertId());
         } catch (\PDOException $e) {
-            $this->erro = 'Erro ao inserir o usuário: ' . $e->getMessage();
+            $this->erro = 'Erro ao inserir a rifa: ' . $e->getMessage();
             return false;
         }
     }
@@ -76,7 +76,7 @@ class RifaDAO{
             return $cx->fetchAll();
         }
         catch(\PODException $e){
-            $this->erro = 'Erro ao selecionar o usuário ' . $e->getMessage();
+            $this->erro = 'Erro ao selecionar a rifa ' . $e->getMessage();
             return false;
         }
     }
@@ -91,7 +91,22 @@ class RifaDAO{
             throw new Exception('Erro ao selecionar a rifa pelo nome: ' . $e->getMessage());
         }
     }
-//update
+
+    public function update(Rifa $rifa)
+    {
+        $stmt = $this->pdo->prepare("UPDATE Rifa SET titulo = ?, descricao = ?, data_termino = ? WHERE id = ?");
+        $titulo = $rifa->getTitulo();
+        $descricao = $rifa->getDescricao();
+        $data_termino = $rifa->getData_termino();
+        $id = $rifa->getId();
+        try {
+            $stmt->execute([$titulo, $descricao, $data_termino, $id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            throw new Exception('Erro ao atualizar a rifa: ' . $e->getMessage());
+        }
+    }
+
     public function deleteById($id){
         $stmt = $this->pdo->prepare("DELETE FROM Rifa WHERE rifa.id = ?");
         try{
